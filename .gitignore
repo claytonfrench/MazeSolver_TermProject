@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/c++,macos,windows,linux,cmake,git
 
+[Bb]in/
+[Bb]uild/
+
 ### C++ ###
 # Prerequisites
 *.d
