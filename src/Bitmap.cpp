@@ -3,8 +3,6 @@
 #include <string>
 #include <fstream>
 
-#include <stdio.h>
-
 using namespace std;
 
 Bitmap::Bitmap(string filename)
@@ -99,12 +97,12 @@ void Bitmap::read_file()
 {
 	ifstream file(this->filename.c_str(), ios_base::in | ios_base::binary);
 	if (! file.is_open()) {
-		throw("File can't be opened !");
+		throw string("File can't be opened !");
 	}
 	byte magic_b = file.get();
 	byte magic_m = file.get();
 	if (magic_b != 'B' || magic_m != 'M')
-		throw("File is not a windows bitmap file !");
+		throw string("File is not a windows bitmap file !");
 	// file size
 	this->read_int(&file);
 	// useless 4 bytes
@@ -115,11 +113,11 @@ void Bitmap::read_file()
 	int w = read_int(&file);
 	int h = read_int(&file);
 	if (read_short(&file) != 1)
-		throw("Incorrect number of color planes");
+		throw string("Incorrect number of color planes");
 	if (read_short(&file) != 24)
-		throw("Must be 24 bit colors");
+		throw string("Must be 24 bit colors");
 	if (read_int(&file) != 0)
-		throw("Image is compressed !");
+		throw string("Image is compressed !");
 	// jump to pixel data
 	file.seekg(start_offset);
 	this->set_size(w, h);
@@ -148,7 +146,7 @@ void Bitmap::write_file()
 {
 	ofstream file(this->filename.c_str(), ios_base::out | ios_base::binary);
 	if (! file.is_open()) {
-		throw("File can't be opened !");
+		throw string("File can't be opened !");
 	}
 	file.put('B');
 	file.put('M');
