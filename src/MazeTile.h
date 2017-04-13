@@ -1,10 +1,8 @@
 #ifndef MAZETILE_H
 #define MAZETILE_H
 
-using namespace std;
-
 class MazeTile {
- public:
+public:
 	bool north;
 	bool south;
 	bool east;
