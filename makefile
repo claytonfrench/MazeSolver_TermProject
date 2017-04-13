@@ -4,10 +4,7 @@ SOURCES = $(wildcard src/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 
 Main: $(OBJECTS)
-	$(CC) $(CFLAGS) src/Main.o -o build/Main
-
-Main.o: /src/Main.cpp
-	$(CC) $(CFLAGS) -c src/Main.cpp
+	$(CC) $(CFLAGS) $(OBJECTS) -o build/Main
 
 *.o: src/*.cpp src/*.h
 	$(CC) $(CFLAGS) -c src/*.cpp
