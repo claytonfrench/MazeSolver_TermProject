@@ -1,5 +1,5 @@
 #ifndef BITMAP_H
-#define BITMAP_h
+#define BITMAP_H
 
 #include "color.h"
 #include <string>

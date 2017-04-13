@@ -175,7 +175,7 @@ void Bitmap::write_file()
 	this->write_int(&file, 0);
 	this->write_int(&file, 0);
 	this->write_int(&file, 0);
-	
+
 	for (int y = this->height - 1; y >= 0; y--) {
 		for (int x = 0; x < this->width; x++) {
 			int index = y * this->width + x;
