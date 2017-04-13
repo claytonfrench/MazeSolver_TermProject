@@ -10,6 +10,7 @@ public:
 	bool is_start;
 	bool is_end;
 	MazeTile(bool, bool, bool, bool, bool, bool);
+	MazeTile();
 };
 
 #endif

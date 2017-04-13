@@ -10,3 +10,13 @@ MazeTile::MazeTile(bool north, bool south, bool east,
 	this->is_start = is_start;
 	this->is_end = is_end;
 }
+
+MazeTile::MazeTile()
+{
+	this->north = false;
+	this->south = false;
+	this->east = false;
+	this->west = false;
+	this->is_start = false;
+	this->is_end = false;
+}
