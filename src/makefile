@@ -9,20 +9,8 @@ Main: $(OBJECTS)
 Main.o: Main.cpp
 	$(CC) $(CFLAGS) -c Main.cpp
 
-Bitmap.o: Bitmap.cpp Bitmap.h
-	$(CC) $(CFLAGS) -c Bitmap.cpp
-
-Color.o: Color.cpp Color.h
-	$(CC) $(CFLAGS) -c Color.cpp
-
-Maze.o: Maze.cpp Maze.h
-	$(CC) $(CFLAGS) -c Maze.cpp
-
-MazeSolver.o: MazeSolver.cpp MazeSolver.h
-	$(CC) $(CFLAGS) -c MazeSolver.cpp
-
-MazeTile.o: MazeTile.cpp MazeTile.h
-	$(CC) $(CFLAGS) -c MazeTile.cpp
+*.o: *.cpp *.h
+	$(CC) $(CFLAGS) -c *.cpp
 
 clean:
 	rm -f $(OBJECTS) Main
