@@ -1,5 +1,5 @@
-#include "color.h"
-#include "bitmap.h"
+#include "Color.h"
+#include "Bitmap.h"
 #include <string>
 #include <fstream>
 

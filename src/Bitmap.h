@@ -1,7 +1,7 @@
 #ifndef BITMAP_H
 #define BITMAP_H
 
-#include "color.h"
+#include "Color.h"
 #include <string>
 #include <istream>
 
