@@ -2,7 +2,6 @@
 #define MAZE_H
 
 #include <vector>
-#include <iostream>
 #include "MazeTile.h"
 #include "Bitmap.h"
 

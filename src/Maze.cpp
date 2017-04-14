@@ -1,3 +1,5 @@
+#include <iostream>
+#include <cstdlib>
 #include "Maze.h"
 
 int Maze::get_width()
