@@ -10,27 +10,27 @@ using namespace std;
 
 class Maze {
 private:
-    MazeTile ***grid; //2d array of MazeTile pointers
+    MazeTile ***grid; // 2d array of MazeTile pointers
 	int width;
 	int height;
 public:
-    //Accessors
+    // Accessors
 	int get_width();
 	int get_height();
 	MazeTile *get_tile(int, int);
 
-    //Maze generation methods
+    // Maze generation methods
 	void generate();
     bool valid_cell(int, int);
     void add_neighbors(int, int, vector<MazeTile*>&, bool**);
     void remove_wall(MazeTile*, MazeTile*);
 
-    //Formatting
+    // Formatting
     void print_maze();
 	void from_bitmap(Bitmap*);
 	Bitmap *to_bitmap();
 
-    //Constructors/Destructors
+    // Constructors/Destructors
 	Maze(int, int);
     ~Maze();
 	Maze(Bitmap*);
