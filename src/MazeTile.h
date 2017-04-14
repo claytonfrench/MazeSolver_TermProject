@@ -7,10 +7,10 @@ public:
 	bool south;
 	bool east;
 	bool west;
-	bool is_start;
-	bool is_end;
-	MazeTile(bool, bool, bool, bool, bool, bool);
-	MazeTile();
+	int x;
+	int y;
+	MazeTile(bool, bool, bool, bool, int, int);
+	MazeTile(int, int);
 };
 
 #endif
