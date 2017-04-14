@@ -26,6 +26,8 @@ class Bitmap {
 	void set_size(int, int);
 	Color *get_pixel(int, int);
 	void set_pixel(int, int, byte, byte, byte);
+	void set_pixel_black(int, int);
+	void set_pixel_white(int, int);
 	void read_file();
 	void write_file();
 };

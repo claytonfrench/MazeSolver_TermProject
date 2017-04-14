@@ -59,6 +59,16 @@ void Bitmap::set_pixel(int x, int y, byte r, byte g, byte b)
 	this->pixels[index].blue = b;
 }
 
+void Bitmap::set_pixel_black(int x, int y)
+{
+	this->set_pixel(x, y, 0, 0, 0);
+}
+
+void Bitmap::set_pixel_white(int x, int y)
+{
+	this->set_pixel(x, y, 255, 255, 255);
+}
+
 // read a little endian 4 byte integer from stream
 int Bitmap::read_int(istream *stream)
 {
