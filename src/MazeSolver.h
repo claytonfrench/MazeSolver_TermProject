@@ -9,20 +9,20 @@ class MazeSolver {
 private:
 	int start_x;
 	int start_y;
-    int end_x;
-    int end_y;
+	int end_x;
+	int end_y;
 	bool *visited_tile;
-    Maze *maze;
+	Maze *maze;
 public:
-    int get_start_x();
-    int get_start_y();
-    int get_end_x();
-    int get_end_y();
+	int get_start_x();
+	int get_start_y();
+	int get_end_x();
+	int get_end_y();
 
-    void set_positions(bool);
+	void set_positions(bool);
 	void solve_maze();
 	void move_to_next_tile();
-    void print_maze();
+	void print_maze();
 	bool is_solved();
 
 	MazeSolver(Maze*);

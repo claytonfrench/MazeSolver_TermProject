@@ -17,12 +17,12 @@ private:
 	int height;
 public:
     // Accessors
-	int get_width();
-	int get_height();
-	MazeTile *get_tile(int, int);
+    int get_width();
+    int get_height();
+    MazeTile *get_tile(int, int);
 
     // Maze generation methods
-	void generate();
+    void generate();
     bool valid_cell(int, int);
     void add_neighbors(int, int, vector<MazeTile*>&, bool**);
     void remove_wall(MazeTile*, MazeTile*);
