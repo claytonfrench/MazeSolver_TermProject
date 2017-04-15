@@ -119,7 +119,6 @@ void MazeSolver::set_positions(bool random)
 
 void MazeSolver::print_maze()
 {
-	//this->maze->print_maze();
 	for (int i = 0; i < maze->get_height(); i++) {
 		for (int j = 0; j < 2; j++) {
 			for (int k = 0; k < maze->get_width(); k++) {
@@ -190,4 +189,11 @@ int MazeSolver::get_end_y()
 MazeSolver::MazeSolver(Maze* maze)
 {
 	this->maze = maze;
+	set_positions(true);
+}
+
+MazeSolver::MazeSolver(Maze* maze, bool random)
+{
+	this->maze = maze;
+	set_positions(false);
 }
