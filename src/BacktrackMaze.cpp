@@ -7,11 +7,12 @@ BacktrackMaze::BacktrackMaze(int width, int length) {
 	startingRow = (rand() % (int)(width));
 	startingCol = (rand() % (int)(length));
 	
-	maze = new Tile*[width];
-	for(int x = 0 ; x < width; x++)
-		maze[x] = new Tile[length];
+	 maze = new Tile*[width];
+	 for(int x = 0 ; x < width; x++)
+		 maze[x] = new Tile[length];
 	
-	
+	init_maze();
+	generate_maze(0,0);
 }
 
 void BacktrackMaze::init_maze() {
@@ -29,7 +30,7 @@ void BacktrackMaze::init_maze() {
 char BacktrackMaze::find_available_neighbor(int row, int col) {
 	
 	char tilesAround[4] = {'N', 'S', 'E', 'W'};
-	random_shuffle(&tilesAround[0], &tilesAround[3]);
+	random_shuffle(&tilesAround[0], &tilesAround[4]);
 	
 	for(int i = 0; i < 3; ++i) {
 		if(tilesAround[i] == 'N' && maze[row-1][col].passed == false && row > 0)
@@ -78,4 +79,43 @@ void BacktrackMaze::generate_maze(int row, int col) {
 				break;
 		}
 	}
+}
+
+void BacktrackMaze::print_maze() {
+	for(int col = 0; col < length; ++col) {
+		cout << "---";
+	}
+	cout << "\n";
+	
+	for(int row = 0; row < width; ++row) {
+		for(int col = 0; col < length; ++col) {
+			
+			if(maze[row][col].west) {
+				cout << " ";
+			} else
+				cout << "|";
+			
+			cout << " ";
+			
+			if(maze[row][col].east) {
+				cout << " ";
+			} else
+				cout << "|";
+		}
+		
+		for(int col = 0; col < length; ++col) {
+			if(maze[row][col].south) {
+				cout << "   ";
+			} else
+				cout << "---";
+		}
+	}
+}
+
+int main() {
+	
+	BacktrackMaze myMaze(5,5);
+	myMaze.print_maze();
+	
+	return 0;
 }

@@ -7,7 +7,6 @@ struct Tile
 {
 	bool passed;
 	bool north, south, east, west;
-	bool removeNorthWall, removeSouthWall, removeEastWall, removeWestWall;
 };
 
 class BacktrackMaze 
@@ -20,7 +19,7 @@ class BacktrackMaze
 	public:
 		void init_maze();
 		char find_available_neighbor(int, int);
-		void print_grid();
+		void print_maze();
 		void generate_maze(int, int);	
 		BacktrackMaze(int, int);
 };
