@@ -59,7 +59,6 @@ void Maze::generate()
 
 	// Deallocate visited array
 	for (int i = 0; i < height; i++) {
-		cout << endl;
 		delete[] visited[i];
 	}
 
