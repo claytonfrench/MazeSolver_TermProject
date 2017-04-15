@@ -15,7 +15,7 @@ void BacktrackMaze::init_maze() {
 
 char BacktrackMaze::find_available_neighbor(int row, int col) {
 	
-	char tilesAround = {'N', 'S', 'E', 'W');
+	char tilesAround[4] = {'N', 'S', 'E', 'W'};
 	random_shuffle(&tilesAround[0], &tilesAround[3]);
 	
 	for(int i = 0; i < 3; ++i) {
@@ -27,8 +27,8 @@ char BacktrackMaze::find_available_neighbor(int row, int col) {
 			return 'E';
 		else if(tilesAround[i] == 'W' && maze[row][col-1].passed == false && col > 0)
 			return 'W';
-	}
-	return 'Q'
+	} 
+	return 'Q';
 }
 
 void BacktrackMaze::generate_maze(int row, int col) {
@@ -46,7 +46,7 @@ void BacktrackMaze::generate_maze(int row, int col) {
 				generate_maze(row-1, col);
 				break;
 			case 'S':
-				maze[row]col].south = true;
+				maze[row][col].south = true;
 				maze[row+1][col].north = true;
 				generate_maze(row+1, col);
 				break;
