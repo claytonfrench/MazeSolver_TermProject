@@ -12,7 +12,7 @@ BacktrackMaze::BacktrackMaze(int width, int length) {
 		 maze[x] = new Tile[length];
 	
 	init_maze();
-	generate_maze(0,0);
+	generate_maze(startingRow, startingCol);
 }
 
 void BacktrackMaze::init_maze() {
@@ -99,8 +99,12 @@ void BacktrackMaze::print_maze() {
 			
 			if(maze[row][col].east) {
 				cout << " ";
-			} else
-				cout << "|";
+			} else {
+				if(col < length-1 && !maze[row][col+1].west) {
+					cout << " ";
+				} else
+					cout << "|";
+			}
 		}
 		cout << "\n";
 		
@@ -118,7 +122,7 @@ void BacktrackMaze::print_maze() {
 
 int main() {
 	
-	BacktrackMaze myMaze(5,5);
+	BacktrackMaze myMaze(10,10);
 	myMaze.print_maze();
 	
 	return 0;
