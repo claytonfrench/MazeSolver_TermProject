@@ -131,7 +131,11 @@ void Maze::print_maze()
 					}
 					cout << "X";
 					if (grid[i][k]->east) {
-						cout << " |";
+						if (k == width - 1) {
+							cout << " |";
+						} else {
+							cout << "  ";
+						}
 					} else if (!grid[i][k]->east) {
 						cout << "  ";
 					}
@@ -149,8 +153,6 @@ void Maze::print_maze()
 		}
 	}
 	cout << endl;
-
-	// TODO: Fix double walls for interior cells
 }
 
 void Maze::from_bitmap(Bitmap* bitmap)

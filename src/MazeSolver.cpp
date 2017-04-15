@@ -143,7 +143,11 @@ void MazeSolver::print_maze()
 					}
 
 					if (maze->get_tile(i, k)->east) {
-						cout << " |";
+						if (k == maze->get_width() - 1) {
+							cout << " |";
+						} else {
+							cout << "  ";
+						}
 					} else if (!maze->get_tile(i, k)->east) {
 						cout << "  ";
 					}
@@ -161,8 +165,6 @@ void MazeSolver::print_maze()
 		}
 	}
 	cout << endl;
-
-	// TODO: Fix double walls for interior cells
 }
 
 int MazeSolver::get_start_x()
