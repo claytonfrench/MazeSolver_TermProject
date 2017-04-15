@@ -1,8 +1,5 @@
 #include "DisjointSet.h"
 
-
-
-
 DisjointSet::DisjointSet()
 {
 
@@ -36,7 +33,7 @@ bool DisjointSet::combine(int cur, int tar)
 	if (set[a] == set[b])
 		return false;
 
-	for (int i=0; i < set.size(); i++)
+	for (unsigned int i=0; i < set.size(); i++)
 	{
 		if (set[i] == a)
 			set[i] = b;
