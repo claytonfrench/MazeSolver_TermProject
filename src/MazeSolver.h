@@ -2,6 +2,7 @@
 #define MAZESOLVER_H
 
 #include "Maze.h"
+#include <unordered_set>
 
 using namespace std;
 
@@ -11,8 +12,8 @@ private:
 	int start_y;
 	int end_x;
 	int end_y;
-	bool *visited_tile;
 	Maze *maze;
+	unordered_set<MazeTile*> solution;
 public:
 	int get_start_x();
 	int get_start_y();
@@ -21,9 +22,8 @@ public:
 
 	void set_positions(bool);
 	void solve_maze();
-	void move_to_next_tile();
+	bool solve(MazeTile*, unordered_set<MazeTile*>&, bool**);
 	void print_maze();
-	bool is_solved();
 
 	MazeSolver(Maze*);
 };

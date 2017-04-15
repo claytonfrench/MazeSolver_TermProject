@@ -1,20 +1,83 @@
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 #include "MazeSolver.h"
 
+/*
+* Solves maze using a depth-first approach
+*/
 void MazeSolver::solve_maze()
 {
-	// ToDo: Implement
+
+	bool **visited = new bool*[maze->get_height()];
+	unordered_set<MazeTile*> solution;
+
+	// Initialize cells visited to false
+	for (int i = 0; i < maze->get_height(); i++) {
+		visited[i] = new bool[maze->get_width()];
+		for (int j = 0; j < maze->get_width(); j++) {
+			visited[i][j] = false;
+		}
+	}
+
+	// Start solver at start of maze
+	MazeTile *start = maze->get_tile(start_x, start_y);
+	solution.insert(start);
+	solve(start, solution, visited);
+
+	// Store solution
+	this->solution = solution;
+
+	// Deallocate visited array
+	for (int i = 0; i < maze->get_height(); i++) {
+		delete[] visited[i];
+	}
+
+	delete[] visited;
 }
 
-void MazeSolver::move_to_next_tile()
+/*
+* Helper function to solve maze
+*/
+bool MazeSolver::solve(MazeTile *cur, unordered_set<MazeTile*> &solution, bool **visited)
 {
-	// ToDo: Implement
-}
+	int x = cur->x;
+	int y = cur->y;
 
-bool MazeSolver::is_solved()
-{
-	// ToDo: Implement
+	if (x == end_x && y == end_y) { return true; }
+	if (visited[x][y]) { return false; }
+
+	visited[x][y] = true;
+
+	// Checks if cell is in grid and can access cell from current cell
+	if (maze->valid_cell(x+1, y) && !maze->get_tile(x+1,y)->north && !cur->south) {
+		if (solve(maze->get_tile(x+1, y), solution, visited)) {
+			solution.insert(maze->get_tile(x+1, y));
+			return true;
+		}
+	}
+
+	if (maze->valid_cell(x-1, y) && !maze->get_tile(x-1,y)->south && !cur->north) {
+		if (solve(maze->get_tile(x-1, y), solution, visited)) {
+			solution.insert(maze->get_tile(x-1, y));
+			return true;
+		}
+	}
+
+	if (maze->valid_cell(x, y+1) && !maze->get_tile(x,y+1)->west && !cur->east) {
+		if (solve(maze->get_tile(x, y+1), solution, visited)) {
+			solution.insert(maze->get_tile(x, y+1));
+			return true;
+		}
+	}
+
+	if (maze->valid_cell(x, y-1) && !maze->get_tile(x,y-1)->east && !cur->west) {
+		if (solve(maze->get_tile(x, y-1), solution, visited)) {
+			solution.insert(maze->get_tile(x, y-1));
+			return true;
+		}
+	}
+
 	return false;
 }
 
@@ -54,6 +117,54 @@ void MazeSolver::set_positions(bool random)
 	}
 }
 
+void MazeSolver::print_maze()
+{
+	//this->maze->print_maze();
+	for (int i = 0; i < maze->get_height(); i++) {
+		for (int j = 0; j < 2; j++) {
+			for (int k = 0; k < maze->get_width(); k++) {
+				if (j == 0) {
+					if (maze->get_tile(i, k)->north) {
+						cout << "-----";
+					} else {
+						cout << "     ";
+					}
+				} else {
+					if (maze->get_tile(i, k)->west) {
+						cout << "| ";
+					} else if (!maze->get_tile(i, k)->west) {
+						cout << "  ";
+					}
+
+					if (solution.find(maze->get_tile(i, k)) != solution.end()) {
+						cout << "*";
+					} else {
+						cout << "X";
+					}
+
+					if (maze->get_tile(i, k)->east) {
+						cout << " |";
+					} else if (!maze->get_tile(i, k)->east) {
+						cout << "  ";
+					}
+				}
+			}
+			cout << endl;
+		}
+	}
+
+	for (int i = 0; i < maze->get_width(); i++) {
+		if (maze->get_tile(maze->get_height() - 1, i)->south) {
+			cout << "-----";
+		} else {
+			cout << "     ";
+		}
+	}
+	cout << endl;
+
+	// TODO: Fix double walls for interior cells
+}
+
 int MazeSolver::get_start_x()
 {
 	return this->start_x;
@@ -72,11 +183,6 @@ int MazeSolver::get_end_x()
 int MazeSolver::get_end_y()
 {
 	return this->end_y;
-}
-
-void MazeSolver::print_maze()
-{
-	this->maze->print_maze();
 }
 
 MazeSolver::MazeSolver(Maze* maze)
