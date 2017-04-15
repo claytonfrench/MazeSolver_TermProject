@@ -32,14 +32,14 @@ char BacktrackMaze::find_available_neighbor(int row, int col) {
 	char tilesAround[4] = {'N', 'S', 'E', 'W'};
 	random_shuffle(&tilesAround[0], &tilesAround[4]);
 	
-	for(int i = 0; i < 3; ++i) {
-		if(tilesAround[i] == 'N' && maze[row-1][col].passed == false && row > 0)
+	for(int i = 0; i < 4; ++i) {
+		if(row > 0 && tilesAround[i] == 'N' && maze[row-1][col].passed == false)
 			return 'N';
-		else if(tilesAround[i] == 'S' && maze[row+1][col].passed == false && row+1 < width)
+		else if(row+1 < width && tilesAround[i] == 'S' && maze[row+1][col].passed == false)
 			return 'S';
-		else if(tilesAround[i] == 'E' && maze[row][col+1].passed == false && col < length-1)
+		else if(col < length-1 && tilesAround[i] == 'E' && maze[row][col+1].passed == false)
 			return 'E';
-		else if(tilesAround[i] == 'W' && maze[row][col-1].passed == false && col > 0)
+		else if(col > 0 && tilesAround[i] == 'W' && maze[row][col-1].passed == false)
 			return 'W';
 	} 
 	return 'Q';
@@ -102,6 +102,7 @@ void BacktrackMaze::print_maze() {
 			} else
 				cout << "|";
 		}
+		cout << "\n";
 		
 		for(int col = 0; col < length; ++col) {
 			if(maze[row][col].south) {
@@ -109,7 +110,10 @@ void BacktrackMaze::print_maze() {
 			} else
 				cout << "---";
 		}
+		cout << "\n";
 	}
+	
+	//TODO fix double inside walls
 }
 
 int main() {
