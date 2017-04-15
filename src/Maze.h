@@ -11,7 +11,7 @@
 using namespace std;
 
 class Maze {
-private:
+protected:
     MazeTile ***grid; // 2d array of MazeTile pointers
 	int width;
 	int height;
@@ -22,11 +22,9 @@ public:
     MazeTile *get_tile(int, int);
 
     // Maze generation methods
-    void generate();
-    bool valid_cell(int, int);
-    void add_neighbors(int, int, vector<MazeTile*>&, bool**);
-    void remove_wall(MazeTile*, MazeTile*);
-
+    virtual void generate();
+	bool valid_cell(int, int);
+    
     // Formatting
     void print_maze();
 	void from_bitmap(Bitmap*);
