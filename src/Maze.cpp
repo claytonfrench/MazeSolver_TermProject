@@ -67,8 +67,25 @@ void Maze::from_bitmap(Bitmap* bitmap)
 
 Bitmap *Maze::to_bitmap()
 {
-	// TODO: Implement
-	return NULL;
+	int w = this->width * 3 + 5;
+	int h = this->height * 3 + 5;
+	Bitmap *img = new Bitmap("out.bmp", w, h);
+	int x, y, tileX, tileY;
+	for (x = 1, tileX = 0; tileX < this->width; tileX++, x += 2) {
+		for (y = 1, tileY = 0; tileY < this->height; tileY++, y += 2) {
+			MazeTile *tile = this->get_tile(tileX, tileY);
+			if (tile->north)
+				img->set_pixel_white(x, y - 1);
+			if (tile->south)
+				img->set_pixel_white(x, y + 1);
+			if (tile->west)
+				img->set_pixel_white(x - 1, y);
+			if (tile->east)
+				img->set_pixel_white(x + 1, y);
+			img->set_pixel_white(x, y);
+		}
+	}
+	return img;
 }
 
 void Maze::generate()
@@ -121,7 +138,5 @@ bool Maze::valid_cell(int x, int y)
 
 Maze::Maze(Bitmap *bitmap)
 {
-	height = bitmap->get_height();
-	width = bitmap->get_width();
-	// TODO: Implement
+	this->from_bitmap(bitmap);
 }
