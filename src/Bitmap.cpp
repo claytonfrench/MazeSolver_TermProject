@@ -8,17 +8,13 @@ using namespace std;
 Bitmap::Bitmap(string filename)
 {
 	this->filename = filename;
-	this->pixels = NULL;
-	this->width = 0;
-	this->height = 0;
+	this->set_size(0, 0);
 }
 
 Bitmap::Bitmap(string filename, int width, int height)
 {
 	this->filename = filename;
-	this->pixels = NULL;
-	this->width = width;
-	this->height = height;
+	this->set_size(width, height);
 }
 
 Bitmap::~Bitmap()
@@ -134,6 +130,8 @@ void Bitmap::read_file()
 	// each row is padded to be divisible by 4 bytes
 	// this is accounting for that
 	int extra_bytes = this->width * 3 % 4;
+	if (extra_bytes > 0)
+		extra_bytes = 4 - extra_bytes;
 	// read the data
 	// we count backwards because that is how it is encoded
 	for (int y = this->height - 1; y >= 0; y--) {
@@ -161,6 +159,8 @@ void Bitmap::write_file()
 	file.put('B');
 	file.put('M');
 	int extra_bytes = this->width * 3 % 4;
+	if (extra_bytes > 0)
+		extra_bytes = 4 - extra_bytes;
 	// expected file size
 	// (54 is the size of the headers)
 	int image_data_size = (this->width * 3 + extra_bytes) * this->height;
