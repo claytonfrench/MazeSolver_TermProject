@@ -26,6 +26,7 @@ public:
 	void print_maze();
 
 	MazeSolver(Maze*);
+	MazeSolver(Maze*, bool);
 };
 
 #endif
