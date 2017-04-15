@@ -117,13 +117,4 @@ void BacktrackMaze::print_maze() {
 		cout << "\n";
 	}
 	
-	//TODO fix double inside walls
-}
-
-int main() {
-	
-	BacktrackMaze myMaze(10,10);
-	myMaze.print_maze();
-	
-	return 0;
 }
