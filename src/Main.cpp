@@ -1,12 +1,20 @@
 #include <iostream>
 #include <cstring>
 #include <string>
+#include <cstdio>
 #include "BFSMaze.h"
 #include "MazeSolver.h"
 #include "DFSMaze.h"
 #include "KruskalMaze.h"
 
 using namespace std;
+
+string to_string(int n)
+{
+	char buf[15];
+	sprintf(buf, "%d", n);
+	return string(buf);
+}
 
 /**
 * @brief Takes arguments from command line and produces a specified maze
