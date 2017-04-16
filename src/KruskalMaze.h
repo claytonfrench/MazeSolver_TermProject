@@ -1,9 +1,4 @@
-#include <algorithm>
-#include <cmath>
-#include <iostream>
 #include <vector>
-#include <random>
-#include <time.h>
 #include "DisjointSet.h"
 #include "MazeTile.h"
 #include "Maze.h"

@@ -1,8 +1,6 @@
 #ifndef DFSMAZE_H
 #define DFSMAZE_H
 
-#include <iostream>
-#include <algorithm>
 #include "Maze.h"
 
 using namespace std;

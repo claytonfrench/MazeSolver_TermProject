@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
+#include <algorithm>
 #include "Maze.h"
 
 /**

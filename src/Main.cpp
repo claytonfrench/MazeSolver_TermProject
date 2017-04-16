@@ -2,13 +2,14 @@
 #include "BFSMaze.h"
 #include "MazeSolver.h"
 #include "DFSMaze.h"
+#include "KruskalMaze.h"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
 	try {
-		Maze *maze = new DFSMaze(50, 50);
+		Maze *maze = new KruskalMaze(40, 40);
 		MazeSolver solver(maze);
 		maze->print_maze();
 		maze->to_bitmap()->write_file();
