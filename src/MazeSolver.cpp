@@ -227,5 +227,5 @@ MazeSolver::MazeSolver(Maze* maze)
 MazeSolver::MazeSolver(Maze* maze, bool random)
 {
 	this->maze = maze;
-	set_positions(false);
+	set_positions(random);
 }
