@@ -4,6 +4,7 @@
 #include <vector>
 #include "MazeTile.h"
 #include "Bitmap.h"
+#include <ctime>
 
 using namespace std;
 
