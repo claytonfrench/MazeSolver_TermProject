@@ -27,13 +27,11 @@ public:
     
     // Formatting
     void print_maze();
-	void from_bitmap(Bitmap*);
 	Bitmap *to_bitmap();
 
     // Constructors/Destructors
 	Maze(int, int);
     ~Maze();
-	Maze(Bitmap*);
 };
 
 #endif

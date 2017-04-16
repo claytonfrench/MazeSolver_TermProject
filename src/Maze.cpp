@@ -78,16 +78,6 @@ void Maze::print_maze()
 	cout << endl;
 }
 
-
-/**
- * @brief fills the maze tiles based on data found in a bmp file
- * @return void
- */
-void Maze::from_bitmap(Bitmap* bitmap)
-{
-	// TODO: Implement
-}
-
 /**
  * @brief draws the maze to a bitmap file
  * @return the bitmap file
@@ -183,12 +173,4 @@ bool Maze::valid_cell(int x, int y)
 		return true;
 	}
 	return false;
-}
-
-/**
- * @brief constructs a maze based off a bitmap image
- */
-Maze::Maze(Bitmap *bitmap)
-{
-	this->from_bitmap(bitmap);
 }
