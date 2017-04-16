@@ -7,7 +7,7 @@ This program allows the user to select from three different algorithms that gene
 # Running the Program
 1.) The executable can be found in the /build folder
 
-2.) Run the file with the algorithm of choice (e.g. "./Main.exe kruskal" )
+2.) Run the file with your chosen width, height, and algorithm (e.g. "./Main.exe -w 10 -h 10 -a kruskal" )
 
       * "dfs" for Depth First Search
       
