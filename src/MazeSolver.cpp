@@ -3,9 +3,10 @@
 #include <vector>
 #include "MazeSolver.h"
 
-/*
-* Solves maze using a depth-first approach
-*/
+/**
+ * @brief solves maze using a depth-first approach
+ * @return void
+ */
 void MazeSolver::solve_maze()
 {
 
@@ -36,9 +37,13 @@ void MazeSolver::solve_maze()
 	delete[] visited;
 }
 
-/*
-* Helper function to solve maze
-*/
+/**
+ * @brief solves maze using a depth-first approach
+ * @param cur is the current cell
+ * @param solution is the current valid path of maze
+ * @param visited is an array of which tiles have been visited
+ * @return true if a valid path exists, or false if it's a dead end
+ */
 bool MazeSolver::solve(MazeTile *cur, unordered_set<MazeTile*> &solution, bool **visited)
 {
 	int x = cur->x;
@@ -81,12 +86,16 @@ bool MazeSolver::solve(MazeTile *cur, unordered_set<MazeTile*> &solution, bool *
 	return false;
 }
 
-/*
-* Randomly chooses two points on perimeter
-* and designates one as START, and one as END
-* Note: START is always on the left vertical axis
-* and END is always on the right vertical axis
-*/
+/**
+ * @brief randomly chooses two points on perimeter and designates
+ * one as START, and one as END
+ * Note: START is always on the left vertical axis and END is
+ * always on the right vertical axis
+ * @param random should be false if the start and end should be in
+ * top-left and bottom-right corners respectivly, otherwise the
+ * start and end point will be placed randomly on the edge
+ * @return void
+ */
 void MazeSolver::set_positions(bool random)
 {
 	if (random) {
@@ -117,6 +126,10 @@ void MazeSolver::set_positions(bool random)
 	}
 }
 
+/**
+ * @brief prints the solution to the maze to stdout on top of the maze
+ * @return void
+ */
 void MazeSolver::print_maze()
 {
 	for (int i = 0; i < maze->get_height(); i++) {
@@ -166,6 +179,10 @@ void MazeSolver::print_maze()
 	cout << endl;
 }
 
+/**
+ * @brief draws the solution to the maze to a bitmap on top of the maze
+ * @return void
+ */
 Bitmap *MazeSolver::to_bitmap()
 {
 	int w = maze->get_width() * 2 + 1;
@@ -197,33 +214,60 @@ Bitmap *MazeSolver::to_bitmap()
 	return img;
 }
 
-
+/**
+ * @brief gets x-coordinate of the starting location of the maze
+ * @return the column of the starting location
+ */
 int MazeSolver::get_start_x()
 {
 	return this->start_x;
 }
 
+/**
+ * @brief gets y-coordinate of the starting location of the maze
+ * @return the row of the starting location
+ */
 int MazeSolver::get_start_y()
 {
 	return this->start_y;
 }
 
+/**
+ * @brief gets x-coordinate of the end of the maze
+ * @return the column of the end location
+ */
 int MazeSolver::get_end_x()
 {
 	return this->end_x;
 }
 
+/**
+ * @brief gets y-coordinate of the end of the maze
+ * @return the row of the end location
+ */
 int MazeSolver::get_end_y()
 {
 	return this->end_y;
 }
 
+/**
+ * @brief creates an instance of the maze solver for a specific maze
+ * @param maze is the maze to solve
+ */
 MazeSolver::MazeSolver(Maze* maze)
 {
 	this->maze = maze;
 	set_positions(true);
 }
 
+/**
+ * @brief creates an instance of the maze solver for a specific maze,
+ * specifying where the start and end points should be
+ * @param maze is the maze to solve
+ * @param random should be false if the start and end should be in
+ * top-left and bottom-right corners respectivly, otherwise the
+ * start and end point will be placed randomly on the edge
+ */
 MazeSolver::MazeSolver(Maze* maze, bool random)
 {
 	this->maze = maze;
