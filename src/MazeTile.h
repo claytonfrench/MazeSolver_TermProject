@@ -7,6 +7,7 @@ public:
 	bool south;
 	bool east;
 	bool west;
+	bool passed;
 	int x;
 	int y;
 	MazeTile(bool, bool, bool, bool, int, int);
