@@ -5,6 +5,10 @@
 
 using namespace std;
 
+/**
+ * @brief constructs empty bitmap with no pixels defined
+ * @param filename is the name of the file to read or write from
+ */
 Bitmap::Bitmap(string filename)
 {
 	this->filename = filename;
@@ -12,6 +16,10 @@ Bitmap::Bitmap(string filename)
 	this->set_size(0, 0);
 }
 
+/**
+ * @brief constructs empty bitmap with no pixels defined
+ * @param filename is the name of the file to read or write from
+ */
 Bitmap::Bitmap(string filename, int width, int height)
 {
 	this->filename = filename;
@@ -19,16 +27,28 @@ Bitmap::Bitmap(string filename, int width, int height)
 	this->set_size(width, height);
 }
 
+/**
+ * @brief deletes all pixel data
+ */
 Bitmap::~Bitmap()
 {
-	delete [] this->pixels;
+	if (this->pixels != NULL)
+		delete [] this->pixels;
 }
 
+/**
+ * @brief gets the width of the bitmap
+ * @return width of bitmap in pixels
+ */
 int Bitmap::get_width()
 {
 	return this->width;
 }
 
+/**
+ * @brief gets the height of the bitmap
+ * @return heigt of bitmap in pixels
+ */
 int Bitmap::get_height()
 {
 	return this->height;
@@ -39,6 +59,13 @@ Color *Bitmap::get_pixel(int x, int y)
 	return &this->pixels[y * this->width + x];
 }
 
+
+/**
+ * @brief sets the dimensions of the bitmap, resets all pixels
+ * @param width is the new width of the bitmap in pixels
+ * @param height is the new height of the bitmap in pixels
+ * @return void
+ */
 void Bitmap::set_size(int width, int height)
 {
 	this->width = width;
@@ -49,6 +76,15 @@ void Bitmap::set_size(int width, int height)
 	this->pixels = new Color[num_pixels];
 }
 
+/**
+ * @brief sets a pixel's color in the bitmap
+ * @param x is the x-coordinate in pixels
+ * @param y is the y-coordinate in pixels
+ * @param r is amount of red
+ * @param g is amount of green
+ * @param b is amount of blue
+ * @return void
+ */
 void Bitmap::set_pixel(int x, int y, byte r, byte g, byte b)
 {
 	int index = y * this->width + x;
@@ -57,17 +93,33 @@ void Bitmap::set_pixel(int x, int y, byte r, byte g, byte b)
 	this->pixels[index].blue = b;
 }
 
+/**
+ * @brief sets a pixel to black
+ * @param x is the x-coordinate in pixels
+ * @param y is the y-coordinate in pixels
+ * @return void
+ */
 void Bitmap::set_pixel_black(int x, int y)
 {
 	this->set_pixel(x, y, 0, 0, 0);
 }
 
+/**
+ * @brief sets a pixel to white
+ * @param x is the x-coordinate in pixels
+ * @param y is the y-coordinate in pixels
+ * @return void
+ */
 void Bitmap::set_pixel_white(int x, int y)
 {
 	this->set_pixel(x, y, 255, 255, 255);
 }
 
-// read a little endian 4 byte integer from stream
+/**
+ * @brief read a little endian 4 byte integer from stream
+ * @param stream is the stream to read from
+ * @return the integer value read
+ */
 int Bitmap::read_int(istream *stream)
 {
 	byte a = stream->get();
@@ -77,7 +129,11 @@ int Bitmap::read_int(istream *stream)
 	return a | (b << 8) | (c << 16) | (d << 24);
 }
 
-// read a little endian 2 byte integer from stream
+/**
+ * @brief read a little endian 2 byte integer from stream
+ * @param stream is the stream to read from
+ * @return the integer value read
+ */
 int Bitmap::read_short(istream *stream)
 {
 	byte a = stream->get();
@@ -85,7 +141,12 @@ int Bitmap::read_short(istream *stream)
 	return a | (b << 8);
 }
 
-// write a little endian 4 byte integer to stream
+/**
+ * @brief write a little endian 4 byte integer to stream
+ * @param stream is the stream to write to
+ * @param v is the integer value to write
+ * @return void
+ */
 void Bitmap::write_int(ostream *stream, int v)
 {
 	stream->put(v & 0xff);
@@ -94,13 +155,22 @@ void Bitmap::write_int(ostream *stream, int v)
 	stream->put(v >> 24 & 0xff);
 }
 
-// write a little endian 2 byte integer to stream
+/**
+ * @brief write a little endian 2 byte integer to stream
+ * @param stream is the stream to write to
+ * @param v is the integer value to write
+ * @return void
+ */
 void Bitmap::write_short(ostream *stream, int v)
 {
 	stream->put(v & 0xff);
 	stream->put(v >> 8 & 0xff);
 }
 
+/**
+ * @brief reads the bitmap data from a Windows NT .bmp file
+ * @return void
+ */
 void Bitmap::read_file()
 {
 	ifstream file(this->filename.c_str(), ios_base::in | ios_base::binary);
@@ -152,6 +222,10 @@ void Bitmap::read_file()
 	file.close();
 }
 
+/**
+ * @brief writes the bitmap data to a file, in the Windows NT .bmp file format
+ * @return void
+ */
 void Bitmap::write_file()
 {
 	ofstream file(this->filename.c_str(), ios_base::out | ios_base::binary);
