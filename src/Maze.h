@@ -24,7 +24,8 @@ public:
     // Maze generation methods
     virtual void generate();
 	bool valid_cell(int, int);
-    
+    void remove_wall(MazeTile*, MazeTile*);
+
     // Formatting
     void print_maze();
 	Bitmap *to_bitmap();

@@ -8,7 +8,6 @@ using namespace std;
 class BFSMaze : public Maze {
 private:
     void add_neighbors(int, int, vector<MazeTile*>&, bool**);
-    void remove_wall(MazeTile*, MazeTile*);
 public:
     void generate();
 	BFSMaze(int, int);

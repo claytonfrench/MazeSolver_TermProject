@@ -32,6 +32,33 @@ MazeTile *Maze::get_tile(int x, int y)
 }
 
 /**
+ * @brief removes the walls between two adjacent cells
+ * @param cur is the current tile
+ * @param target is the next tile
+ * @return void
+ */
+void Maze::remove_wall(MazeTile *cur, MazeTile *target)
+{
+	int dx = target->x - cur->x;
+	int dy = target->y - cur->y;
+
+	// dy HAS to be 0, since we only consider something adjacent IFF its either N, S, E, W
+	if (dx == -1) {
+		target->south = false;
+		cur->north = false;
+	} else if (dx == 1) {
+		target->north = false;
+		cur->south = false;
+	} else if (dy == 1) {
+		target->west = false;
+		cur->east = false;
+	} else if (dy == -1) {
+		target->east = false;
+		cur->west = false;
+	}
+}
+
+/**
  * @brief prints the maze to stdout
  * @return void
  */
