@@ -9,10 +9,10 @@ This program allows the user to select from three different algorithms that gene
 
 2.) Run the file with your chosen width, height, and algorithm (e.g. "./Main.exe -w 10 -h 10 -a kruskal" )
 
-      * "dfs" for Depth First Search
+      * "DFS" for Depth First Search
       
-      * "bfs" for Breadth First Search
+      * "BFS" for Breadth First Search
       
-      * "kruskal" for Kruskal's Algorithm
+      * "Kruskal" for Kruskal's Algorithm
       
 3.) The bitmap files can be find in the /build folder.
