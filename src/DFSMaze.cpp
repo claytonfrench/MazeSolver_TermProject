@@ -1,7 +1,7 @@
-#include "BacktrackMaze.h"
+#include "DFSMaze.h"
 
 //Maze constructor takes in values for maze parameters
-BacktrackMaze::BacktrackMaze(int width, int length) : Maze(width, length)
+DFSMaze::DFSMaze(int width, int length) : Maze(width, length)
 {
 	srand(time(NULL));
 
@@ -12,7 +12,7 @@ BacktrackMaze::BacktrackMaze(int width, int length) : Maze(width, length)
 }
 
 //randomly selects next cell to travel to during maze generation
-char BacktrackMaze::find_available_neighbor(int row, int col) {
+char DFSMaze::find_available_neighbor(int row, int col) {
 
 	char tilesAround[4] = {'N', 'S', 'E', 'W'};				//array holds possible neighbors
 	random_shuffle(&tilesAround[0], &tilesAround[4]);		//randomizes array
@@ -32,7 +32,7 @@ char BacktrackMaze::find_available_neighbor(int row, int col) {
 	return 'Q'; 																					//returns 'Q' when all cells in maze have been visited
 }
 
-void BacktrackMaze::generate_maze(int row, int col) {
+void DFSMaze::generate_maze(int row, int col) {
 
 	grid[row][col]->passed = true;
 	bool quit = false;

@@ -1,14 +1,14 @@
 #include <iostream>
 #include "BFSMaze.h"
 #include "MazeSolver.h"
-#include "BacktrackMaze.h"
+#include "DFSMaze.h"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
 	try {
-		Maze *maze = new BacktrackMaze(10, 10);
+		Maze *maze = new DFSMaze(50, 50);
 		MazeSolver solver(maze);
 		maze->print_maze();
 		maze->to_bitmap()->write_file();
