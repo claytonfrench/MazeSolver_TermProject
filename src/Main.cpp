@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstring>
-#include <string>
 #include <cstdio>
 #include "BFSMaze.h"
 #include "MazeSolver.h"
@@ -9,7 +8,7 @@
 
 using namespace std;
 
-string to_string(int n)
+string int_to_string(int n)
 {
 	char buf[15];
 	sprintf(buf, "%d", n);
@@ -35,7 +34,7 @@ int main(int argc, char **argv)
 				width = atoi(argv[i+1]);
 
 				// Check if width is an integer
-				if (argv[i+1] != to_string(width)) {
+				if (argv[i+1] != int_to_string(width)) {
 					cout << "Invalid width. Only use integers." << endl;
 					return 1;
 				}
@@ -44,28 +43,28 @@ int main(int argc, char **argv)
 				height = atoi(argv[i+1]);
 
 				// Check if height is an integer
-				if (argv[i+1] != to_string(height)) {
-					cout << "Invalid width. Only use integers." << endl;
+				if (argv[i+1] != int_to_string(height)) {
+					cout << "Invalid height. Only use integers." << endl;
 					return 1;
 				}
 				i++;
 			} else if (strcmp(argv[i], "-a") == 0) {
 				string alg = argv[i+1];
 				if (alg == "BFS") {
-					if (height > 500 || width > 500) {
-						cout << "Height/width need to be less than 500." << endl;
+					if (height > 500 || width > 500 || height <= 0 || width <= 0) {
+						cout << "Height/width need to be positive and less than 500." << endl;
 						return 1;
 					}
 					maze = new BFSMaze(width, height);
 				} else if (alg == "DFS") {
-					if (height > 250 || width > 250) {
-						cout << "Height/width need to be less than 250." << endl;
+					if (height > 250 || width > 250 || height <= 0 || width <= 0) {
+						cout << "Height/width need to be positive and less than 250." << endl;
 						return 1;
 					}
 					maze = new DFSMaze(width, height);
 				} else if (alg == "Kruskal") {
-					if (height > 100 || width > 100) {
-						cout << "Height/width need to be less than 100." << endl;
+					if (height > 100 || width > 100 || height <= 0 || width <= 0) {
+						cout << "Height/width need to be positive and less than 100." << endl;
 						return 1;
 					}
 					maze = new KruskalMaze(width, height);
@@ -76,6 +75,7 @@ int main(int argc, char **argv)
 				i++;
 			} else {
 				cout << "Invalid arguments." << endl;
+				return 1;
 			}
 		}
 	}
