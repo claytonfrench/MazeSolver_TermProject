@@ -3,11 +3,7 @@
 //Maze constructor takes in values for maze parameters
 BacktrackMaze::BacktrackMaze(int width, int length) : Maze(width, length)
 {
-
 	srand(time(NULL));
-	
-	this->width = width;						//initialize maze width and length
-	this->length = length;
 
 	startingRow = rand() % width;		//randomize maze generating parameters
 	startingCol = rand() % length;
@@ -25,9 +21,9 @@ char BacktrackMaze::find_available_neighbor(int row, int col) {
 	for(int i = 0; i < 4; ++i) {																	//traverse randomized array to find next neighbor
 		if(row > 0 && tilesAround[i] == 'N' && !grid[row-1][col]->passed)					//if north neighbor was not passed and current row != 0
 			return 'N';
-		else if(row+1 < width && tilesAround[i] == 'S' && !grid[row+1][col]->passed)			//if south neighbor was not passed and current row is not the last one
+		else if(row+1 < height && tilesAround[i] == 'S' && !grid[row+1][col]->passed)			//if south neighbor was not passed and current row is not the last one
 			return 'S';
-		else if(col < length-1 && tilesAround[i] == 'E' && !grid[row][col+1]->passed)		//if east neighbor was not passed and current column is not the last
+		else if(col < width-1 && tilesAround[i] == 'E' && !grid[row][col+1]->passed)		//if east neighbor was not passed and current column is not the last
 			return 'E';
 		else if(col > 0 && tilesAround[i] == 'W' && !grid[row][col-1]->passed)				//if west neighbor was not passed and current column != 0
 			return 'W';

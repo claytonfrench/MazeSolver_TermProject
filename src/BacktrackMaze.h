@@ -6,7 +6,6 @@ using namespace std;
 
 class BacktrackMaze : public Maze {
 private:
-	int width, length;
 	int startingRow;
 	int startingCol;
 public:
