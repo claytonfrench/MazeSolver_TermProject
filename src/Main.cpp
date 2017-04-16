@@ -17,12 +17,11 @@ using namespace std;
 int main(int argc, char **argv)
 {
 	Maze *maze;
+	int width, height;
 	if (argc != 7) {
 		cout << "Invalid number of arguments. Usage: -w <width> -h <height> -a <algorithm>" << endl;
 		return 1;
 	} else {
-		int width, height;
-
 		for (int i = 1; i < argc; i++) {
 			if (strcmp(argv[i], "-w") == 0) {
 				width = atoi(argv[i+1]);
@@ -75,12 +74,12 @@ int main(int argc, char **argv)
 
 	MazeSolver solver(maze);
 
-	cout << "Generated maze (out.bmp): " << endl;
-	maze->print_maze();
+	cout << ">>Generated maze ouput to out.bmp<<" << endl;
+	if (width <= 20 && height <= 20) { cout << "Generated maze: " << endl; maze->print_maze(); }
 	maze->to_bitmap()->write_file();
-	cout << "Solved maze (solved.bmp): " << endl;
+	cout << ">>Solved maze output to solved.bmp<<" << endl;
 	solver.solve_maze();
-	solver.print_maze();
+	if (width <= 20 && height <= 20) { cout << "Solved maze: " << endl; solver.print_maze(); }
 	solver.to_bitmap()->write_file();
 
 	return 0;
