@@ -1,15 +1,17 @@
 #include <iostream>
 #include "BFSMaze.h"
+#include "MazeSolver.h"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
 	try {
-		BFSMaze maze(5, 5);
-		maze.generate();
-		maze.print_maze();
-		maze.to_bitmap()->write_file();
+		Maze *maze = new BFSMaze(5, 5);
+		MazeSolver solver(maze);
+		solver.solve_maze();
+		solver.print_maze();
+		solver.to_bitmap()->write_file();
 		return 0;
 	} catch (string e) {
 		cout << "Error : " << e << endl;

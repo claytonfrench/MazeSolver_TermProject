@@ -2,6 +2,7 @@
 #define MAZESOLVER_H
 
 #include "Maze.h"
+#include "Bitmap.h"
 #include <unordered_set>
 
 using namespace std;
@@ -24,6 +25,7 @@ public:
 	void solve_maze();
 	bool solve(MazeTile*, unordered_set<MazeTile*>&, bool**);
 	void print_maze();
+	Bitmap *to_bitmap();
 
 	MazeSolver(Maze*);
 	MazeSolver(Maze*, bool);

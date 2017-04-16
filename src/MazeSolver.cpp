@@ -166,6 +166,38 @@ void MazeSolver::print_maze()
 	cout << endl;
 }
 
+Bitmap *MazeSolver::to_bitmap()
+{
+	int w = maze->get_width() * 2 + 1;
+	int h = maze->get_height() * 2 + 1;
+	Bitmap *img = new Bitmap("solved.bmp", w, h);
+	int x, y, tileX, tileY;
+	for (x = 1, tileY = 0; tileY < maze->get_width(); tileY++, x += 2) {
+		for (y = 1, tileX = 0; tileX < maze->get_height(); tileX++, y += 2) {
+			MazeTile *t = maze->get_tile(tileX, tileY);
+			if (!t->north) {
+				img->set_pixel_white(x, y - 1);
+			}
+			if (!t->south) {
+				img->set_pixel_white(x, y + 1);
+			}
+			if (!t->east) {
+				img->set_pixel_white(x + 1, y);
+			}
+			if (!t->west) {
+				img->set_pixel_white(x - 1, y);
+			}
+			if (solution.find(t) != solution.end()) {
+				img->set_pixel(x, y, 0xFF, 0x00, 0x00);
+			} else {
+				img->set_pixel_white(x, y);
+			}
+		}
+	}
+	return img;
+}
+
+
 int MazeSolver::get_start_x()
 {
 	return this->start_x;
