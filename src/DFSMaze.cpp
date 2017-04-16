@@ -8,14 +8,14 @@
  * @param width is the number of tiles per row
  * @param height is the number of rows
  */
-DFSMaze::DFSMaze(int width, int length)
-	: Maze(width, length)
+DFSMaze::DFSMaze(int width, int height)
+	: Maze(width, height)
 {
 	srand(time(NULL));
 
 	// randomize maze generating parameters
-	startingRow = rand() % width;
-	startingCol = rand() % length;
+	startingRow = rand() % height;
+	startingCol = rand() % width;
 
 	// generate maze starting at random cell
 	generate_maze(startingRow, startingCol);
