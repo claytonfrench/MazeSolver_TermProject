@@ -2,6 +2,7 @@
 
 [Bb]in/
 [Bb]uild/
+*.bmp
 
 ### C++ ###
 # Prerequisites
