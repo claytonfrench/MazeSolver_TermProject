@@ -8,6 +8,11 @@
 
 using namespace std;
 
+/**
+ * @brief converts an integer to a string
+ * @param n is any integer
+ * @return the number formatted in base 10 as a string
+ */
 string int_to_string(int n)
 {
 	char buf[15];
