@@ -1,6 +1,6 @@
 #ifndef BFSMAZE_H
 #define BFSMAZE_H
-
+#include <algorithm>
 #include "Maze.h"
 
 using namespace std;
