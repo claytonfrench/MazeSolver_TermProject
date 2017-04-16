@@ -55,7 +55,7 @@ void BFSMaze::generate()
 }
 
 /**
- * @brief finds the unvisited cells that surrond a tile, and pushes them to a vector
+ * @brief finds the unvisited cells that surround a tile, and pushes them to a vector
  * @param x is the x-coordinate of the cell in units of tiles
  * @param y is the x-coordinate of the cell in units of tiles
  * @param neighbors is the list of neighbors to push to
