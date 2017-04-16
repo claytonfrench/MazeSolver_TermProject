@@ -18,7 +18,7 @@ public:
 	~DisjointSet();
 	int find(int);
 	bool combine(int, int);
-	int get_num_of_sets();
+	int size();
 };
 
 #endif
