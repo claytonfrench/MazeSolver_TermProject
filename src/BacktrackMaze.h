@@ -6,7 +6,7 @@ using namespace std;
 struct Tile 
 {
 	bool passed;
-	bool north, south, east, west;
+	bool north, south, east, west; //true if tile connects with N/S/E/W neighbor
 };
 
 class BacktrackMaze 
