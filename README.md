@@ -1,5 +1,4 @@
-# MazeSolver_TermProject
-UF COP3503 Spring 2017 Group Term Project
+# UF COP3503 Spring 2017 Group Term Project
 
 # Maze Generator and Solver
 
