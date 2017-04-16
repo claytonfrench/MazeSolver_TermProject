@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include "BFSMaze.h"
 #include "MazeSolver.h"
 #include "DFSMaze.h"
