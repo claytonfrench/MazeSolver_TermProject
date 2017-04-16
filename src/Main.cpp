@@ -9,7 +9,9 @@ int main(int argc, char **argv)
 		BFSMaze maze(5, 5);
 		maze.generate();
 		maze.print_maze();
-		maze.to_bitmap()->write_file();
+		Bitmap *img = maze.to_bitmap();
+		img->write_file();
+		delete img;
 		return 0;
 	} catch (string e) {
 		cout << "Error : " << e << endl;
