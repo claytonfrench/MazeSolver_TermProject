@@ -67,22 +67,31 @@ void Maze::from_bitmap(Bitmap* bitmap)
 
 Bitmap *Maze::to_bitmap()
 {
-	int w = this->width * 3 + 5;
-	int h = this->height * 3 + 5;
+	int w = this->width * 12 + 5;
+	int h = this->height * 12 + 5;
 	Bitmap *img = new Bitmap("out.bmp", w, h);
 	int x, y, tileX, tileY;
-	for (x = 1, tileX = 0; tileX < this->width; tileX++, x += 2) {
-		for (y = 1, tileY = 0; tileY < this->height; tileY++, y += 2) {
-			MazeTile *tile = this->get_tile(tileX, tileY);
-			if (tile->north)
+	for (x = 0; x < w; x++) {
+		for (y = 0; y < h; y++) {
+			img->set_pixel(x, y, 0xbb, 0xbb, 0xbb);
+		}
+	}
+	for (y = 1, tileY = 0; tileY < this->height; tileY++, y += 3) {
+		for (x = 1, tileX = 0; tileX < this->width; tileX++, x += 3) {
+			MazeTile *t = this->get_tile(tileX, tileY);
+			if (t->north) {
 				img->set_pixel_white(x, y - 1);
-			if (tile->south)
+			}
+			if (t->south) {
 				img->set_pixel_white(x, y + 1);
-			if (tile->west)
+			}
+			if (t->east) {
 				img->set_pixel_white(x - 1, y);
-			if (tile->east)
-				img->set_pixel_white(x + 1, y);
-			img->set_pixel_white(x, y);
+			}
+			if (t->west) {
+				img->set_pixel_white(x - 1, y);
+			}
+			img->set_pixel(x, y, 0x7f, 0x00, 0x7f);
 		}
 	}
 	return img;
