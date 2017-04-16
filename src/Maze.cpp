@@ -2,21 +2,39 @@
 #include <cstdlib>
 #include "Maze.h"
 
+/**
+ * @brief gets the width of the maze
+ * @return the width as represented by number of tiles
+ */
 int Maze::get_width()
 {
 	return this->width;
 }
 
+/**
+ * @brief gets the height of the maze
+ * @return the height as represented by number of tiles
+ */
 int Maze::get_height()
 {
 	return this->height;
 }
 
+/**
+ * @brief gets a tile from the maze
+ * @param x is the x-coordinate of the maze by tile number
+ * @param y is the y-coordinate of the maze by tile number
+ * @return the maze tile
+ */
 MazeTile *Maze::get_tile(int x, int y)
 {
 	return grid[x][y];
 }
 
+/**
+ * @brief prints the maze to stdout
+ * @return void
+ */
 void Maze::print_maze()
 {
 	for (int i = 0; i < height; i++) {
@@ -60,11 +78,20 @@ void Maze::print_maze()
 	cout << endl;
 }
 
+
+/**
+ * @brief fills the maze tiles based on data found in a bmp file
+ * @return void
+ */
 void Maze::from_bitmap(Bitmap* bitmap)
 {
 	// TODO: Implement
 }
 
+/**
+ * @brief draws the maze to a bitmap file
+ * @return the bitmap file
+ */
 Bitmap *Maze::to_bitmap()
 {
 	int w = this->width * 2 + 1;
@@ -92,10 +119,19 @@ Bitmap *Maze::to_bitmap()
 	return img;
 }
 
+/**
+ * @brief randomly generates the maze
+ * @return void
+ */
 void Maze::generate()
 {
 }
 
+/**
+ * @brief creates a new maze with the specified number of tiles
+ * @param width is the number of tiles per row
+ * @param height is the number of tiles per column
+ */
 Maze::Maze(int width, int height)
 {
 	this->height = height;
@@ -115,6 +151,9 @@ Maze::Maze(int width, int height)
 	generate();
 }
 
+/**
+ * @brief frees the memory held by the maze tiles
+ */
 Maze::~Maze()
 {
 	//Deletes MazeTile pointers
@@ -132,6 +171,12 @@ Maze::~Maze()
 	delete[] grid;
 }
 
+/**
+ * @brief determines if the specified cell is in the range of the maze
+ * @param x is the x-coordinate of the maze by tile number
+ * @param y is the y-coordinate of the maze by tile number
+ * @return true if the cell is in range, false if not
+ */
 bool Maze::valid_cell(int x, int y)
 {
 	if (x >= 0 && x < height && y >= 0 && y < width) {
@@ -140,6 +185,9 @@ bool Maze::valid_cell(int x, int y)
 	return false;
 }
 
+/**
+ * @brief constructs a maze based off a bitmap image
+ */
 Maze::Maze(Bitmap *bitmap)
 {
 	this->from_bitmap(bitmap);
