@@ -92,6 +92,7 @@ void BFSMaze::add_neighbors(int x, int y, std::vector<MazeTile*> &neighbors, boo
 BFSMaze::BFSMaze(int w, int h)
 	: Maze(w, h)
 {
+	this->generate();
 }
 
 BFSMaze::BFSMaze(Bitmap* bitmap)
