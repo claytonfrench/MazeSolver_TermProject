@@ -2,6 +2,10 @@
 #include <cstdlib>
 #include "BFSMaze.h"
 
+/**
+ * @brief generates a maze using a randomized breadth-first search
+ * @return void
+ */
 void BFSMaze::generate()
 {
 	bool **visited = new bool*[height];
@@ -50,12 +54,19 @@ void BFSMaze::generate()
 	delete[] visited;
 }
 
+/**
+ * @brief removes the walls between two adjacent cells
+ * @param cur is the current tile
+ * @param target is the next tile
+ * @return void
+ */
 void BFSMaze::remove_wall(MazeTile *cur, MazeTile *target)
 {
 	int dx = target->x - cur->x;
 	int dy = target->y - cur->y;
 
-	if (dx == -1) { // dy HAS to be 0, since we only consider something adjacent IFF its either N, S, E, W
+	// dy HAS to be 0, since we only consider something adjacent IFF its either N, S, E, W
+	if (dx == -1) {
 		target->south = false;
 		cur->north = false;
 	} else if (dx == 1) {
@@ -70,6 +81,14 @@ void BFSMaze::remove_wall(MazeTile *cur, MazeTile *target)
 	}
 }
 
+/**
+ * @brief finds the unvisited cells that surrond a tile, and pushes them to a vector
+ * @param x is the x-coordinate of the cell in units of tiles
+ * @param y is the x-coordinate of the cell in units of tiles
+ * @param neighbors is the list of neighbors to push to
+ * @param visited is the array of visited tiles
+ * @return void
+ */
 void BFSMaze::add_neighbors(int x, int y, std::vector<MazeTile*> &neighbors, bool **visited)
 {
 	if (valid_cell(x+1, y) && !visited[x+1][y]) {
@@ -89,13 +108,14 @@ void BFSMaze::add_neighbors(int x, int y, std::vector<MazeTile*> &neighbors, boo
 	}
 }
 
+/**
+ * @brief creates a maze of a specified size that is generated using
+ * a randomized breadth-first search
+ * @param w is the number of tiles per row
+ * @param y is the number of rows
+ */
 BFSMaze::BFSMaze(int w, int h)
 	: Maze(w, h)
 {
 	this->generate();
-}
-
-BFSMaze::BFSMaze(Bitmap* bitmap)
-	: Maze(bitmap)
-{
 }
