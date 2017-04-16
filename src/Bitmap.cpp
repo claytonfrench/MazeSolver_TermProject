@@ -8,12 +8,14 @@ using namespace std;
 Bitmap::Bitmap(string filename)
 {
 	this->filename = filename;
+	this->pixels = NULL;
 	this->set_size(0, 0);
 }
 
 Bitmap::Bitmap(string filename, int width, int height)
 {
 	this->filename = filename;
+	this->pixels = NULL;
 	this->set_size(width, height);
 }
 
