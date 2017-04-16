@@ -168,34 +168,29 @@ void MazeSolver::print_maze()
 
 Bitmap *MazeSolver::to_bitmap()
 {
-	int w = maze->get_width() * 3;
-	int h = maze->get_height() * 3;
-	Bitmap *img = new Bitmap("out.bmp", w, h);
+	int w = maze->get_width() * 2 + 1;
+	int h = maze->get_height() * 2 + 1;
+	Bitmap *img = new Bitmap("solved.bmp", w, h);
 	int x, y, tileX, tileY;
-	for (x = 0; x < w; x++) {
-		for (y = 0; y < h; y++) {
-			img->set_pixel(x, y, 0xbb, 0xbb, 0xbb);
-		}
-	}
-	for (x = 1, tileY = 0; tileY < maze->get_width(); tileY++, x += 3) {
-		for (y = 1, tileX = 0; tileX < maze->get_height(); tileX++, y += 3) {
+	for (x = 1, tileY = 0; tileY < maze->get_width(); tileY++, x += 2) {
+		for (y = 1, tileX = 0; tileX < maze->get_height(); tileX++, y += 2) {
 			MazeTile *t = maze->get_tile(tileX, tileY);
-			if (t->north) {
+			if (!t->north) {
 				img->set_pixel_white(x, y - 1);
 			}
-			if (t->south) {
+			if (!t->south) {
 				img->set_pixel_white(x, y + 1);
 			}
-			if (t->east) {
+			if (!t->east) {
 				img->set_pixel_white(x + 1, y);
 			}
-			if (t->west) {
+			if (!t->west) {
 				img->set_pixel_white(x - 1, y);
 			}
 			if (solution.find(t) != solution.end()) {
 				img->set_pixel(x, y, 0xFF, 0x00, 0x00);
 			} else {
-				img->set_pixel(x, y, 0x7f, 0x00, 0x7f);
+				img->set_pixel_white(x, y);
 			}
 		}
 	}
