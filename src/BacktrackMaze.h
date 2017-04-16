@@ -1,25 +1,16 @@
-#include<iostream>
-#include<algorithm>
+#include <iostream>
+#include <algorithm>
+#include "Maze.h"
 
 using namespace std;
 
-struct Tile 
-{
-	bool passed;
-	bool north, south, east, west; //true if tile connects with N/S/E/W neighbor
-};
-
-class BacktrackMaze 
-{
+class BacktrackMaze : public Maze {
+private:
 	int width, length;
 	int startingRow;
 	int startingCol;
-	Tile** maze;
-	
-	public:
-		void init_maze();
-		char find_available_neighbor(int, int);
-		void print_maze();
-		void generate_maze(int, int);	
-		BacktrackMaze(int, int);
+public:
+	char find_available_neighbor(int, int);
+	void generate_maze(int, int);
+	BacktrackMaze(int, int);
 };
