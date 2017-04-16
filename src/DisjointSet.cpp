@@ -1,25 +1,5 @@
 #include "DisjointSet.h"
 
-DisjointSet::DisjointSet()
-{
-
-}
-
-DisjointSet::DisjointSet(int numOfNodes)
-{
-	numOfSets = numOfNodes;
-
-	for (int i=0; i < numOfNodes; i++)
-	{
-		set[i] = i;
-	}
-}
-
-DisjointSet::~DisjointSet()
-{
-
-}
-
 int DisjointSet::find(int element)
 {
 	return set[element];
@@ -33,18 +13,36 @@ bool DisjointSet::combine(int cur, int tar)
 	if (set[a] == set[b])
 		return false;
 
-	for (unsigned int i=0; i < set.size(); i++)
-	{
+	for (unsigned int i=0; i < set.size(); i++) {
 		if (set[i] == a)
 			set[i] = b;
 	}
 
-	numOfSets--;
+	num_of_sets--;
 
 	return true;
 }
 
-int DisjointSet::getNumOfSets()
+int DisjointSet::get_num_of_sets()
 {
-	return numOfSets;
+	return num_of_sets;
+}
+
+DisjointSet::DisjointSet()
+{
+
+}
+
+DisjointSet::DisjointSet(int num_of_nodes)
+{
+	num_of_sets = num_of_nodes;
+
+	for (int i=0; i < num_of_nodes; i++) {
+		set[i] = i;
+	}
+}
+
+DisjointSet::~DisjointSet()
+{
+
 }
