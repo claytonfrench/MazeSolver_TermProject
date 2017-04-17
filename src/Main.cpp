@@ -29,7 +29,7 @@ string int_to_string(int n)
 int main(int argc, char **argv)
 {
 	Maze *maze;
-	int width, height;
+	int width = 1, height = 1;
 	if (argc != 7) {
 		cout << "Invalid number of arguments. Usage: -w <width> -h <height> -a <algorithm>" << endl;
 		return 1;
