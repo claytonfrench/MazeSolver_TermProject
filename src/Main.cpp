@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 					return 1;
 				}
 				i++;
-			} else if (strcmp(argv[i], "-a") == 0) {
+			} else if (strcmp(argv[i], "-a") == 0 && i == 5) {
 				string alg = argv[i+1];
 				if (alg == "BFS") {
 					if (height > 500 || width > 500 || height <= 0 || width <= 0) {
@@ -78,6 +78,9 @@ int main(int argc, char **argv)
 					return 1;
 				}
 				i++;
+			} else if (strcmp(argv[i], "-a") == 0 && i != 5) {
+				cout << "Must specify algorithm as last argument." << endl;
+				return 1;
 			} else {
 				cout << "Invalid arguments." << endl;
 				return 1;
